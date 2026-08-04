@@ -1,0 +1,17 @@
+Relevant Django Commands
+
+# activate venv
+source ../venv/bin/activate
+
+# run server
+py manage.py runserver
+
+# open shell
+py manage.py shell
+
+# database migrations
+py manage.py makemigrations
+py manage.py migrate
+
+# new app
+py manage.py startapp app_name

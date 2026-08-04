@@ -1,0 +1,6 @@
+To Do
+MVP: Minimum Viable Product
+
+nows:
+
++setup git
