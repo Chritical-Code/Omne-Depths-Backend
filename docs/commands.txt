@@ -1,7 +1,7 @@
 Relevant Django Commands
 
 # activate venv
-source ../venv/bin/activate
+source .venv/bin/activate
 
 # run server
 py manage.py runserver

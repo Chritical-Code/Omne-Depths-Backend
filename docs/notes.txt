@@ -3,4 +3,4 @@ MVP: Minimum Viable Product
 
 nows:
 
-+setup git
++await further instruction from frontend
