@@ -5,4 +5,4 @@ from .models import Topic
 class TopicSerialzer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Topic
-        fields = ["topic"]
+        fields = ["name", "id"]
