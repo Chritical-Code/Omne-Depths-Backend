@@ -4,3 +4,8 @@ MVP: Minimum Viable Product
 nows:
 
 +await further instruction from frontend
+
+
+
+laters:
++swtich to big ids for public faces

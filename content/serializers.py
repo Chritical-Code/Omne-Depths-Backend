@@ -1,8 +1,13 @@
 from rest_framework import serializers
-from .models import Topic
+from .models import Topic, Post
 
 
-class TopicSerialzer(serializers.HyperlinkedModelSerializer):
+class TopicSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Topic
-        fields = ["name", "id"]
+        fields = ["id", "name"]
+
+class PostSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Post
+        fields = '__all__'

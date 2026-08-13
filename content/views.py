@@ -1,8 +1,13 @@
 from rest_framework import permissions, viewsets
-from .models import Topic
-from .serializers import TopicSerialzer
+from .models import Topic, Post
+from .serializers import TopicSerializer, PostSerializer
 
 class TopicViewSet(viewsets.ModelViewSet):
     queryset = Topic.objects.order_by('?')[:33]
-    serializer_class = TopicSerialzer
+    serializer_class = TopicSerializer
+    permission_classes = [permissions.AllowAny]
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.order_by('?')[:10]
+    serializer_class = PostSerializer
     permission_classes = [permissions.AllowAny]
