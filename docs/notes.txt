@@ -3,7 +3,6 @@ MVP: Minimum Viable Product
 
 nows:
 
-+await further instruction from frontend
 
 
 
