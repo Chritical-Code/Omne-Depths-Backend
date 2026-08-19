@@ -18,6 +18,6 @@ class ListPostsOfTopic(generics.ListAPIView):
     permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
-        topicID = self.kwargs.get("topicID")
-        data = Post.objects.filter(topic = topicID)
-        return data
+        topicName = self.kwargs.get("topicName")
+        posts = Post.objects.filter(topic__name__iexact = topicName)
+        return posts
