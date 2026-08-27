@@ -21,3 +21,15 @@ class ListPostsOfTopic(generics.ListAPIView):
         topicName = self.kwargs.get("topicName")
         posts = Post.objects.filter(topic__name__iexact = topicName)
         return posts
+
+class GenerateTopics(generics.ListAPIView):
+    serializer_class = TopicSerializer
+    permission_classes = [permissions.AllowAny]
+
+    def get_queryset(self):
+        # generate new topics
+
+        # send new topics generated
+        
+        topics = Topic.objects.all()
+        return topics
