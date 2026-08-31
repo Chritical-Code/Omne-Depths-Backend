@@ -2,6 +2,7 @@ from rest_framework import permissions, viewsets
 from .models import Topic, Post
 from .serializers import TopicSerializer, PostSerializer
 from rest_framework import generics
+from .ai import TopicGenerator
 
 class TopicViewSet(viewsets.ModelViewSet):
     queryset = Topic.objects.order_by("id")
@@ -27,9 +28,30 @@ class GenerateTopics(generics.ListAPIView):
     permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
-        # generate new topics
+        # gather all current topics
+        topics = Topic.objects.order_by("id")
 
-        # send new topics generated
-        
-        topics = Topic.objects.all()
+        # attach new topics to base prompt
+        exclude = ""
+        for topic in topics:
+            exclude += topic.name + ", "
+
+        # send prompt to ai
+        ai = TopicGenerator(exclude=exclude)
+
+        # print a basic test response
+        ai.test_ai_call()
+
+        # convert ai response to json or object or etc
+
+        # create new topic object array with ai response
+        newTopics = list()
+        newTopic = Topic(name="")
+        newTopics.append(newTopic)
+
+        # remove any duplicates found
+
+        # save topics to database
+
+        # return new topics generated
         return topics
