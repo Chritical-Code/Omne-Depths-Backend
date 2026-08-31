@@ -3,6 +3,7 @@ from .models import Topic, Post
 from .serializers import TopicSerializer, PostSerializer
 from rest_framework import generics
 from .ai import TopicGenerator
+import json
 
 class TopicViewSet(viewsets.ModelViewSet):
     queryset = Topic.objects.order_by("id")
@@ -29,7 +30,7 @@ class GenerateTopics(generics.ListAPIView):
 
     def get_queryset(self):
         # gather all current topics
-        topics = Topic.objects.order_by("id")
+        topics = Topic.objects.order_by("id")[:100]
 
         # attach new topics to base prompt
         exclude = ""
@@ -38,20 +39,30 @@ class GenerateTopics(generics.ListAPIView):
 
         # send prompt to ai
         ai = TopicGenerator(exclude=exclude)
+        ai.real_ai_call()
 
-        # print a basic test response
-        ai.test_ai_call()
+        # convert ai response to json
+        topics_dict = json.loads(ai.response)
 
-        # convert ai response to json or object or etc
+        # check for error message
+        if "error" in topics_dict:
+            return
 
-        # create new topic object array with ai response
-        newTopics = list()
-        newTopic = Topic(name="")
-        newTopics.append(newTopic)
+        # convert json to objects
+        new_topics = list()
+        for temp_topic in topics_dict:
+            # check for duplicates
+            skip = False
+            for topic in topics:
+                if temp_topic["name"] == topic.name:
+                    skip = True
 
-        # remove any duplicates found
+            # convert and save
+            if not skip:
+                new_topic = Topic(name=temp_topic["name"])
+                new_topics.append(new_topic)
+                new_topic.save()
 
-        # save topics to database
 
         # return new topics generated
-        return topics
+        return new_topics

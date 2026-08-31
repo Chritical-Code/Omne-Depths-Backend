@@ -3,33 +3,16 @@ MVP: Minimum Viable Product
 
 nows:
 +ai content generation
--plug in ai (get it to console log anything)
--get it to console log the json
+-get it to console log the json as text
+-convert text to json
 -convert json to objects
 -save objects as data
 
-
-ai notes
 role example:
 You are a JSON-only generator.
 You MUST output only valid JSON.
 No prose, no explanation, no markdown.
 If you cannot answer, return {"error":"unable to comply"}.
-
-prompt example:
-Respond using this exact schema:
-
-{
-    "title": string,
-    "tags": string[],
-    "data": {
-        "id": number,
-        "value": string
-    }
-}
-
-Fill it with information about: NPC mood system.
-
 
 laters:
 +swtich to big ids for public faces
