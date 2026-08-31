@@ -4,11 +4,13 @@ from .serializers import TopicSerializer, PostSerializer
 from rest_framework import generics
 from .ai import TopicGenerator
 import json
+from .pagination import CustomPaginator
 
 class TopicViewSet(viewsets.ModelViewSet):
     queryset = Topic.objects.order_by("id")
     serializer_class = TopicSerializer
     permission_classes = [permissions.AllowAny]
+    pagination_class = CustomPaginator
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.order_by("id")
