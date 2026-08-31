@@ -2,6 +2,7 @@ To Do
 MVP: Minimum Viable Product
 
 nows:
++start thinking about the scaling topics issue
 
 +ai topic gen
 
