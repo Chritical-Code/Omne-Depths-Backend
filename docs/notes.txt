@@ -2,11 +2,13 @@ To Do
 MVP: Minimum Viable Product
 
 nows:
-+start thinking about the scaling topics issue
 
-+ai topic gen
++post generation
+-think about article layout
+-think about dynamic features to utilize the technology
 
 laters:
 +swtich to big ids for public faces
 +configure permissions
 +restrict ai usage
++scaling topics issue
