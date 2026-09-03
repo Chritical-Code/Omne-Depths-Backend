@@ -10,4 +10,4 @@ class TopicSerializer(serializers.HyperlinkedModelSerializer):
 class PostSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Post
-        fields = ["id", "topic", "title", "text"]
+        fields = ["id", "topic", "title", "description", "text"]
