@@ -21,21 +21,17 @@ class TopicGenerator():
 
     base_prompt = dedent("""
         Return an array of exactly 10 objects.
-
         The name of each object should be a random topic of interest.
 
         Each object must follow this schema:
-
         {"name": string}
 
         The final output must look like:
-
         [
             {"name": "..."},
             {"name": "..."},
             ...
         ]
-
     """)
 
     base_exclude = "Don't include these topics: "

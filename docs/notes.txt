@@ -4,8 +4,7 @@ MVP: Minimum Viable Product
 nows:
 
 +post generation
--title, description, text
--three paragraphs
+-view
 
 laters:
 +switch to big ids for public faces

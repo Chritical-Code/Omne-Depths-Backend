@@ -3,6 +3,7 @@ from .models import Topic, Post
 from .serializers import TopicSerializer, PostSerializer
 from rest_framework import generics
 from .ai.topic_generator import TopicGenerator
+from .ai.post_generator import PostGenerator
 import json
 from .pagination import CustomPaginator
 from django.db.models.functions import Random
@@ -38,7 +39,7 @@ class GenerateTopics(generics.ListAPIView):
         # gather all current topics
         topics = Topic.objects.order_by("id")[:100]
 
-        # attach new topics to base prompt
+        # attach old topics to be excluded
         exclude = ""
         for topic in topics:
             exclude += topic.name + ", "
@@ -72,3 +73,46 @@ class GenerateTopics(generics.ListAPIView):
 
         # return new topics generated
         return new_topics
+
+class GeneratePosts(generics.ListAPIView):
+    serializer_class = PostSerializer
+    permission_classes = [permissions.AllowAny]
+
+    def get_queryset(self):
+        topicName = self.kwargs.get("topicName")
+
+        # get exact topic
+        topic = Topic.objects.filter(name__iexact = topicName)
+
+        # ensure the topic exists
+        if len(topic) < 1: return
+
+        # gather all current posts of topic
+        posts = Post.objects.filter(topic = topic[0].id)
+
+        # attach post titles to base prompt
+        exclude = ""
+        for post in posts:
+            exclude += post.title + ", "
+
+        # send prompt to ai
+        ai = PostGenerator(exclude=exclude)
+        ai.real_ai_call()
+
+        # convert ai response to json
+        posts_dict = json.loads(ai.response)
+
+        # check for error message
+        if "error" in posts_dict:
+            return
+
+        # convert json to objects
+        new_posts = list()
+        for temp_post in posts_dict:
+            new_Post = Post(topic=topic, title=temp_post["title"], description=temp_post["description"], text=temp_post["text"])
+            new_posts.append(new_Post)
+            new_Post.save()
+
+
+        # return new posts generated
+        return new_posts
