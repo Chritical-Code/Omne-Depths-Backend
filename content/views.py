@@ -2,15 +2,15 @@ from rest_framework import permissions, viewsets
 from .models import Topic, Post
 from .serializers import TopicSerializer, PostSerializer
 from rest_framework import generics
-from .ai import TopicGenerator
+from .ai.topic_generator import TopicGenerator
 import json
 from .pagination import CustomPaginator
 from django.db.models.functions import Random
 
 
 class TopicViewSet(viewsets.ModelViewSet):
-    # queryset = Topic.objects.order_by("id")                                   # in order
-    queryset = Topic.objects.annotate(random=Random()).order_by("random")[:100] # random
+    queryset = Topic.objects.order_by("id")                                         # in order
+    # queryset = Topic.objects.annotate(random=Random()).order_by("random")[:100]   # random
 
     serializer_class = TopicSerializer
     permission_classes = [permissions.AllowAny]

@@ -3,14 +3,12 @@ MVP: Minimum Viable Product
 
 nows:
 
-+add description to post
-
 +post generation
--think about article layout
--think about dynamic features to utilize the technology
+-title, description, text
+-three paragraphs
 
 laters:
-+swtich to big ids for public faces
++switch to big ids for public faces
 +configure permissions
 +restrict ai usage
 +scaling topics issue
