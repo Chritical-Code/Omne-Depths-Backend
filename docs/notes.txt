@@ -3,6 +3,8 @@ MVP: Minimum Viable Product
 
 nows:
 
++add description to post
+
 +post generation
 -think about article layout
 -think about dynamic features to utilize the technology

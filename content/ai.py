@@ -57,38 +57,8 @@ class TopicGenerator():
             ],
             stream=False,
             reasoning_effort="high",
-            extra_body={"thinking": {"type": "enabled"}}
+            extra_body={"thinking": {"type": "disabled"}}
         )
 
         text_response = response.choices[0].message.content
         self.response = text_response
-
-    def test_ai_call(self):
-        # Important data
-        api_key = settings.API_KEY
-        bot_identity = "You are a helpful assistant."
-        model = {
-            "pro": "deepseek-v4-pro",
-            "flash": "deepseek-v4-flash"
-        }
-
-        # Prompt
-        prompt = "Hello"
-
-        client = OpenAI(
-            api_key= api_key,
-            base_url="https://api.deepseek.com")
-
-        response = client.chat.completions.create(
-            model=model["flash"],
-            messages=[
-                {"role": "system", "content": bot_identity},
-                {"role": "user", "content": prompt},
-            ],
-            stream=False,
-            reasoning_effort="high",
-            extra_body={"thinking": {"type": "enabled"}}
-        )
-
-        text_response = response.choices[0].message.content
-        print(text_response)

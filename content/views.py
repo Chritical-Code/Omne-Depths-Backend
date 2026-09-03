@@ -5,9 +5,13 @@ from rest_framework import generics
 from .ai import TopicGenerator
 import json
 from .pagination import CustomPaginator
+from django.db.models.functions import Random
+
 
 class TopicViewSet(viewsets.ModelViewSet):
-    queryset = Topic.objects.order_by("id")
+    # queryset = Topic.objects.order_by("id")                                   # in order
+    queryset = Topic.objects.annotate(random=Random()).order_by("random")[:100] # random
+
     serializer_class = TopicSerializer
     permission_classes = [permissions.AllowAny]
     pagination_class = CustomPaginator
