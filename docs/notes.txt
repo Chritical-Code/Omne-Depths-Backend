@@ -4,7 +4,8 @@ MVP: Minimum Viable Product
 nows:
 
 +post generation
--view
+-view (test)
+-url (and anything else needed to run the view)
 
 laters:
 +switch to big ids for public faces

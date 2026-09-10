@@ -14,5 +14,6 @@ urlpatterns = [
     path("", include(router.urls)),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
     path("postsbytopic/<str:topicName>/", content_views.ListPostsOfTopic.as_view()),
-    path("generatetopics/", content_views.GenerateTopics.as_view())
+    path("generatetopics/", content_views.GenerateTopics.as_view()),
+    path("generateposts/<str:topicName>/", content_views.GeneratePosts.as_view()),
 ]

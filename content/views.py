@@ -81,22 +81,21 @@ class GeneratePosts(generics.ListAPIView):
     def get_queryset(self):
         topicName = self.kwargs.get("topicName")
 
-        # get exact topic
-        topic = Topic.objects.filter(name__iexact = topicName)
-
-        # ensure the topic exists
-        if len(topic) < 1: return
+        # get exact topic, if it exists
+        topics = Topic.objects.filter(name__iexact = topicName)
+        if not topics: return
+        topic = topics[0]
 
         # gather all current posts of topic
-        posts = Post.objects.filter(topic = topic[0].id)
+        posts = Post.objects.filter(topic = topic).order_by("id")
 
-        # attach post titles to base prompt
+        # attach post titles to base exclude prompt
         exclude = ""
         for post in posts:
             exclude += post.title + ", "
+        ai = PostGenerator(topic=topic.name, exclude=exclude)
 
         # send prompt to ai
-        ai = PostGenerator(exclude=exclude)
         ai.real_ai_call()
 
         # convert ai response to json

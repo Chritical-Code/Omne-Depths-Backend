@@ -34,7 +34,7 @@ class TopicGenerator():
         ]
     """)
 
-    base_exclude = "Don't include these topics: "
+    base_exclude = "\n Don't include these topics: "
 
     def __init__(self, exclude):
         self.exclude = self.base_exclude + exclude

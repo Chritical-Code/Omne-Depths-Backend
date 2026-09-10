@@ -3,7 +3,6 @@ from openai import OpenAI
 from django.conf import settings
 
 class PostGenerator():
-
     api_key = settings.API_KEY
     base_url="https://api.deepseek.com"
 
@@ -34,7 +33,8 @@ class PostGenerator():
         Content rules:
         - Unique, interesting title.
         - Short description.
-        - 3 paragraphs in "text", separated by "\n\n".
+        - 3 paragraphs each in "text", separated by "\n\n".
+        - Paragraphs should be 5-9 sentences long.
 
         The final output must look like:
         [
@@ -44,9 +44,12 @@ class PostGenerator():
         ]
     """)
 
-    base_exclude = "Don't include articles too similar to the following titles: "
+    base_topic = "\n The topic is: "
 
-    def __init__(self, exclude):
+    base_exclude = "\n Don't include articles too similar to the following titles (if any): "
+
+    def __init__(self, topic, exclude):
+        self.topic = self.base_topic + topic
         self.exclude = self.base_exclude + exclude
         self.response = ""
 
@@ -59,7 +62,7 @@ class PostGenerator():
             model=self.model["flash"],
             messages=[
                 {"role": "system", "content": self.role},
-                {"role": "user", "content": self.base_prompt + self.exclude},
+                {"role": "user", "content": self.base_prompt + self.topic + self.exclude},
             ],
             stream=False,
             reasoning_effort="high",
