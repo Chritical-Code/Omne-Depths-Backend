@@ -3,12 +3,24 @@ MVP: Minimum Viable Product
 
 nows:
 
-+post generation
--view (test)
--url (and anything else needed to run the view)
++post tweaks
+-shorter intro (4 sentences?)
+
++title tweaks
+-shorter titles
+
++description tweaks
+-hmm
+
++prevent generation spamming
 
 laters:
 +switch to big ids for public faces
 +configure permissions
-+restrict ai usage
++restrict free ai usage
 +scaling topics issue
+
++monetization:
+-token counting
+-credits system
+-payment system
