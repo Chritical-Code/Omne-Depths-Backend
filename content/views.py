@@ -98,6 +98,11 @@ class GeneratePosts(generics.ListAPIView):
         # send prompt to ai
         ai.real_ai_call()
 
+        # log response
+        with open("ai_logs.txt", "a") as f:
+            f.write(ai.response + "\n\n")
+
+
         # convert ai response to json
         posts_dict = json.loads(ai.response)
 
