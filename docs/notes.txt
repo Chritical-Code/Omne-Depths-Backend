@@ -14,6 +14,12 @@ nows:
 
 +prevent generation spamming
 
++errors:
+-add logging to all ai generation
+-make the logging better in general rather than a random text file
+-dont just log the text response
+-handle the error more gracefully (if i figure out how it happened)
+
 laters:
 +switch to big ids for public faces
 +configure permissions
