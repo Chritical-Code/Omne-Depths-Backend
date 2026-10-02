@@ -2,6 +2,7 @@ To Do
 MVP: Minimum Viable Product
 
 nows:
++implement free api keys like google
 
 +prevent generation spamming on backend too
 
