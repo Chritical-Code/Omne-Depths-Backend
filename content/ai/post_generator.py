@@ -31,10 +31,11 @@ class PostGenerator():
         }
 
         Content rules:
-        - Unique, interesting title.
-        - Short description.
+        - Unique, interesting, and short, one-part titles with no colons.
+        - Brief description.
         - 3 paragraphs each in "text", separated by "\n\n".
-        - Paragraphs should be 5-9 sentences long.
+        - The first paragraph should be 4 sentences long.
+        - Other paragraphs should be 6-8 sentences long.
 
         The final output must look like:
         [

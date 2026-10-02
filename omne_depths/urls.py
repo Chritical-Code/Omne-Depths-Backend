@@ -1,4 +1,5 @@
 from django.urls import include, path
+from django.contrib import admin
 from rest_framework import routers
 
 from content import views as content_views
@@ -16,4 +17,5 @@ urlpatterns = [
     path("postsbytopic/<str:topicName>/", content_views.ListPostsOfTopic.as_view()),
     path("generatetopics/", content_views.GenerateTopics.as_view()),
     path("generateposts/<str:topicName>/", content_views.GeneratePosts.as_view()),
+    path('admin/', admin.site.urls),
 ]

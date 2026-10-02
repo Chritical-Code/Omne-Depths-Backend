@@ -3,16 +3,7 @@ MVP: Minimum Viable Product
 
 nows:
 
-+post tweaks
--shorter intro (4 sentences?)
-
-+title tweaks
--shorter titles
-
-+description tweaks
--hmm
-
-+prevent generation spamming
++prevent generation spamming on backend too
 
 +errors:
 -add logging to all ai generation
