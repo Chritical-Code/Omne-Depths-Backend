@@ -1,12 +1,13 @@
-from rest_framework import permissions, viewsets
+import json
+from django.db.models.functions import Random
+from rest_framework.filters import SearchFilter
+from rest_framework import permissions, viewsets, generics
+
 from .models import Topic, Post
 from .serializers import TopicSerializer, PostSerializer
-from rest_framework import generics
 from .ai.topic_generator import TopicGenerator
 from .ai.post_generator import PostGenerator
-import json
 from .pagination import CustomPaginator
-from django.db.models.functions import Random
 
 
 class TopicViewSet(viewsets.ModelViewSet):
@@ -120,3 +121,9 @@ class GeneratePosts(generics.ListAPIView):
 
         # return new posts generated
         return new_posts
+
+class TopicSearch(generics.ListAPIView):
+    queryset = Topic.objects.order_by("id") 
+    serializer_class = TopicSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ['name']

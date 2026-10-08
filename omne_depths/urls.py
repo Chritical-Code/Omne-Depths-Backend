@@ -17,5 +17,6 @@ urlpatterns = [
     path("postsbytopic/<str:topicName>/", content_views.ListPostsOfTopic.as_view()),
     path("generatetopics/", content_views.GenerateTopics.as_view()),
     path("generateposts/<str:topicName>/", content_views.GeneratePosts.as_view()),
+    path("topicsearch/", content_views.TopicSearch.as_view()),
     path('admin/', admin.site.urls),
 ]
