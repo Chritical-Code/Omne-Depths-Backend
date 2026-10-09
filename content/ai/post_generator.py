@@ -36,6 +36,7 @@ class PostGenerator():
         - 3 paragraphs each in "text", separated by "\n\n".
         - The first paragraph should be 4 sentences long.
         - Other paragraphs should be 6-8 sentences long.
+        - If quotes are needed inside content, use ' rather than ".
 
         The final output must look like:
         [
