@@ -26,6 +26,7 @@ class PostViewSet(viewsets.ModelViewSet):
 class ListPostsOfTopic(generics.ListAPIView):
     serializer_class = PostSerializer
     permission_classes = [permissions.AllowAny]
+    pagination_class= CustomPaginator
 
     def get_queryset(self):
         topicName = self.kwargs.get("topicName")
