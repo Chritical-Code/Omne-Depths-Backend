@@ -2,6 +2,10 @@ To Do
 MVP: Minimum Viable Product
 
 nows:
++consider reading allowed ips from env file
+
++easy start script
+
 +implement free api keys like google
 
 +prevent generation spamming on backend too
