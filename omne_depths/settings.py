@@ -17,17 +17,21 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# For environment variables
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
+API_KEY = env("API_KEY")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-5odj2owovsr#1=k7yb+!)!^@@^fta482^7@ls8nnn%$o=77y9v'
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "192.168.1.26", "192.168.1.212"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", env("LOCAL_IP")]
 
 
 # Application definition
@@ -123,7 +127,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-# Things i added
+# Some of the hings i added
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
@@ -131,11 +135,5 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "http://192.168.1.26:5173",
-    "http://192.168.1.212:5173"
+    env("LOCAL_URL")
 ]
-
-# For environment variables
-env = environ.Env()
-environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
-API_KEY = env("API_KEY")

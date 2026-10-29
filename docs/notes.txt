@@ -2,7 +2,6 @@ To Do
 MVP: Minimum Viable Product
 
 nows:
-+consider reading allowed ips from env file
 
 +easy start script
 
