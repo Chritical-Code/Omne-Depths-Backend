@@ -9,6 +9,8 @@ nows:
 
 +prevent generation spamming on backend too
 
++testing
+
 +errors:
 -add logging to all ai generation
 -make the logging better in general rather than a random text file
